@@ -19,6 +19,7 @@ app.use(morgan('dev'))
 
 const bot = new Bot(process.env.TOKEN)
 bot.connect()
+bot.events()
 
 app.get('/',(req,res)=>{
     res.send('hello public bot with web panel!')
