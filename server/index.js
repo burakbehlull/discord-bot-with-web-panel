@@ -17,7 +17,8 @@ app.use(cors({
 }))
 app.use(morgan('dev'))
 
-Bot(process.env.TOKEN)
+const bot = new Bot(process.env.TOKEN)
+bot.connect()
 
 app.get('/',(req,res)=>{
     res.send('hello public bot with web panel!')
