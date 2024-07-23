@@ -1,12 +1,13 @@
 import express from 'express'
 import cors from 'cors'
+import morgan from 'morgan'
 import 'dotenv/config'
-import { Bot } from './config'
+import { Bot } from './config/index.js'
 
 const app = express()
 
 app.use(express.static('public'))
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended:true }))
 app.use(express.json())
 
 

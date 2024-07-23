@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
   },
   "keywords": [],
-  "author": "Burak A. <burakyabgu@gmail.com>",
+  "author": "Burak <burakyabgu@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^8.2.2",

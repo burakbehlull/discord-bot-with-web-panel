@@ -5,5 +5,9 @@ export default function Bot(token){
         intents: Object.keys(GatewayIntentBits).map((intent) => GatewayIntentBits[intent])
     })
     client.login(token)
-    
+    .then(()=> console.log('Giriş yapıldı'))
+    .catch(err=> {
+        console.log('Hata: ', err)
+    })
+    return client
 }
