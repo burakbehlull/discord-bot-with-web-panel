@@ -4,14 +4,13 @@ import path from 'node:path'
 import fs from 'fs'
 
 export default class Bot {
-    constructor(token){
-        this.token = token
+    constructor(){
         this.client = new Client({
             intents: Object.keys(GatewayIntentBits).map((intent) => GatewayIntentBits[intent])
         })
     }
     connect() {
-        this.client.login(this.token)
+        this.client.login(process.env.TOKEN)
         .then(()=> console.log('Giriş yapıldı'))
         .catch(err=> {
             console.log('Hata: ', err)
