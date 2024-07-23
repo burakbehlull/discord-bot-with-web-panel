@@ -4,18 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:start":"cd server && npm run start",
-    "server:dev":"cd server && npm run dev",
-
-    "client:dev":"cd client && npm run dev",
-    "client:build":"cd client && npm run build",
-
+    "server:start": "cd server && npm run start",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "client:build": "cd client && npm run build",
     "dev": "concurrently \"npm run client:dev\" \"npm run server:dev\""
   },
   "keywords": [],
   "author": "Burak A. <burakyabgu@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5"
   }
 }
