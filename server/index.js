@@ -3,7 +3,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import 'dotenv/config'
 import { Bot,DB } from './config/index.js'
-
+import { authRoute, botRoute } from './routers/index.js'
 const app = express()
 
 app.use(express.static('public'))
@@ -25,6 +25,8 @@ bot.events()
 app.get('/',(req,res)=>{
     res.send('hello public bot with web panel!')
 })
+app.use('/auth', authRoute)
+app.use('/bot', botRoute)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is ${process.env.PORT} port started`)
