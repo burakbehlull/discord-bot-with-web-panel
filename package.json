@@ -14,7 +14,6 @@
   "author": "Burak <burakyabgu@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^8.2.2",
-    "cors": "^2.8.5"
+    "concurrently": "^8.2.2"
   }
 }
