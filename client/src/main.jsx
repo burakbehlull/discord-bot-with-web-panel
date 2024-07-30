@@ -6,7 +6,7 @@ import Routes from './routes/index'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes />
+        <Routes />
     </BrowserRouter>
   </React.StrictMode>,
 )

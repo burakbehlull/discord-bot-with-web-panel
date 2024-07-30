@@ -1,12 +1,13 @@
-import Login from "./auth/Login"
-import Layout from "./layouts/Layout"
-import Hero from "./Hero"
-import Dashboard from "./Dashboard"
+import Dashboard from './bot/Dashboard'
+import Settings from './bot/Settings'
+import Hero from './Hero'
+
 export {
-    Dashboard,
+    // pages
     Hero,
-    // layouts
-    Layout,
     // auth
-    Login
+
+    // bot
+    Dashboard,
+    Settings
 }

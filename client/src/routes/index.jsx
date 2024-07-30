@@ -1,14 +1,20 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero, Layout,Dashboard } from '../pages/index'
+import { Hero,Settings, Dashboard } from '../pages/index.js'
 export default function Routes(){
     return useRoutes([
         {
             path: '/',
-            element: <Layout element={<Hero />} />,
+            element: <Hero />,
         },
         {
-            path: '/xd',
-            element: <Layout element={<Hero />} />,
+            path: '/bot',
+            element: <Dashboard />,
+            children: [
+                {
+                    path: 'settings',
+                    element: <Settings />
+                }
+            ]
         }
     ])
 

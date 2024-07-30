@@ -1,6 +1,7 @@
 
+
 export default function Hero(){
-    return(
+    return (
         <>
             HERO
         </>

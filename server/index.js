@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import 'dotenv/config'
-import { Bot,DB } from './config/index.js'
+import { DB, Bot } from './config/index.js'
 import { authRoute, botRoute } from './routers/index.js'
 const app = express()
 
@@ -18,7 +18,8 @@ app.use(cors({
 app.use(morgan('dev'))
 
 DB()
-const bot = new Bot()
+
+export const bot = new Bot()
 bot.connect()
 bot.events()
 
