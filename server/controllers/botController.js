@@ -24,7 +24,7 @@ const BotPresence = async (req,res)=> {
 			activities: [
                 {
                     name: name,
-                    type: type
+                    type: Number(type)
                 }
             ],
 			shardId: 0

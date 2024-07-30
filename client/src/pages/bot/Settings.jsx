@@ -5,7 +5,7 @@ const api = import.meta.env.VITE_API_URI + "/bot"
 
 import {presenceFlags,statusFlags} from '../../helpers/data'
 export default function Settings(){
-    const [values, setValues] = useState({status: '', presence: 0, presenceName: ''})
+    const [values, setValues] = useState({status: '', presence: "0", presenceName: ''})
     const [data, setData] = useState({})
     const [error, setError] = useState({})
     function handleChange(e){
@@ -25,7 +25,7 @@ export default function Settings(){
     return (
         <>
             <div className="bot-status">
-                {JSON.stringify(data)}
+                {JSON.stringify(values)}
                 <select name="status" onChange={handleChange}>
                     {statusFlags?.map((flag,key)=><option key={key} value={flag}>{flag}</option>)}
                 </select>
