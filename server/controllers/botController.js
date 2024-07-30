@@ -1,8 +1,7 @@
 // bot controller
 
 import { bot } from '../index.js'
-
-const BotSettings = async (req,res)=> {
+const BotStatus = async (req,res)=> {
     const { status } = req.body
 
     try {
@@ -17,6 +16,31 @@ const BotSettings = async (req,res)=> {
     }
 }
 
+const BotPresence = async (req,res)=> {
+    const { name, type } = req.body
+
+    try {
+        await bot.client.user.setPresence({
+			activities: [
+                {
+                    name: name,
+                    type: type
+                }
+            ],
+			shardId: 0
+		})
+
+        console.log('başarılı')
+        return res.json({
+            success: true,
+        })
+    } catch (err) {
+        console.log(err)
+        return
+    }
+}
+
 export {
-    BotSettings
+    BotStatus,
+    BotPresence
 }
