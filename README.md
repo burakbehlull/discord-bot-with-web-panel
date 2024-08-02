@@ -1,5 +1,29 @@
 # Discord Public Bot with Web Panel
 
+### path: 
+` npm install ` or ` yarn `
+
+` npm run dev ` or ` yarn dev `
+
+<br />
+
+### Create an `.env` file on the server and client side and configure it like this:
+` server `
+```js
+PORT = 80 // WEB LOCAL PORT
+TOKEN = //BOT TOKEN
+BOT_ID = // YOUR BOT
+MONGO_URI = // MONGODB URL
+
+SERVER_ID = // YOUR SERVER ID
+```
+
+` client `
+```js
+VITE_API_URI = // YOUR SERVER URL
+```
+
+
 | Route | Opposite |
 | -------- | -------- |
 | **/bot** | Where to set bot settings |
