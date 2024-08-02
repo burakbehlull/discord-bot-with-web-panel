@@ -24,6 +24,8 @@ export default function Settings(){
     }
     return (
         <>
+            {error && error?.message}
+            {data?.success && data?.success}
             <div className="bot-status">
                 {JSON.stringify(values)}
                 <select name="status" onChange={handleChange}>

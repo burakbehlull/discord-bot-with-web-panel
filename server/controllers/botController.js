@@ -1,6 +1,6 @@
 // bot controller
-
 import { bot } from '../index.js'
+
 const BotStatus = async (req,res)=> {
     const { status } = req.body
 
@@ -42,5 +42,5 @@ const BotPresence = async (req,res)=> {
 
 export {
     BotStatus,
-    BotPresence
+    BotPresence,
 }

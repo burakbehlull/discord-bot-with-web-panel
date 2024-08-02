@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero,Settings, Dashboard } from '../pages/index.js'
+import { Hero,Settings, Dashboard, Actions } from '../pages/index.js'
 export default function Routes(){
     return useRoutes([
         {
@@ -15,6 +15,10 @@ export default function Routes(){
                     element: <Settings />
                 }
             ]
+        },
+        {
+            path: '/actions',
+            element: <Actions />
         }
     ])
 
