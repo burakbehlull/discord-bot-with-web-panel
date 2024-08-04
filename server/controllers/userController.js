@@ -119,11 +119,52 @@ const Timeout = async (req,res)=> {
 
 }
 
+
+const AddRoles = async (req,res)=> {
+    const { serverId, userId, roles } = req.body
+    const isServerId = serverId || process.env.SERVER_ID
+    try {
+        const server = await bot.client.guilds.fetch(isServerId)
+        var user = await server.members.cache.get(userId)
+		
+        if(!server) return res.json({
+                success: true,
+                message: 'Server ID yok.'
+        })
+        
+        if(!userId) return res.json({
+                success: true,
+                message: "Kullanıcı ID'si yok."
+        })
+
+		
+		roles.map(async (role)=>{
+			let target = await server.roles.fetch(role)
+			if(!target) return res.json({
+				success: true,
+				message: "Role yok."
+			})
+			await user.roles.add(target)
+		})
+        
+    
+        return res.json({
+            message: 'Roller eklendi.',
+            success: true,
+    
+        })
+    } catch (err) {
+        console.log('error', err)
+    }
+
+}
+
 export {
     Ban,
     Kick,
     Unban,
 
-    Timeout
+    Timeout,
+	AddRoles
 
 }

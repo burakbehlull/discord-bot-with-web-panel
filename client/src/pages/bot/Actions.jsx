@@ -4,12 +4,21 @@ import { useState } from "react"
 const api = import.meta.env.VITE_API_URI + "/user"
 
 export default function Actions(){
-    const [values, setValues] = useState({serverId: '', userId: '', reason: '', time: ''})
+    const [values, setValues] = useState({serverId: '', userId: '', reason: '', time: '',byRoles: ''})
     const [data, setData] = useState({})
     const [error, setError] = useState({})
+	const [roles, setRoles] = useState([])
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
+	
+	function handleRolesChange(e){
+		setRoles([...roles, values.byRoles])
+		values.byRoles = ""
+	}
+	function handleRolesClear(e){
+		setRoles([])
+	}
     async function handleBanClick(){
         await axios.post(api+"/ban", {
             serverId: values.serverId,
@@ -39,6 +48,13 @@ export default function Actions(){
             time: values.time
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
+    async function handleRoleClick(){
+        await axios.post(api+"/addRoles", {
+            serverId: values.serverId,
+            userId: values.userId,
+            roles: roles
+        }).then(res=> setData(res.data)).catch(err=> setError(err))
+    }
     return (
         <>
             {error && error?.message}
@@ -47,6 +63,7 @@ export default function Actions(){
 
             <div className="container">
                 {JSON.stringify(values)}
+				{JSON.stringify(roles)}
                 <label htmlFor="serverId">Server ID: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server ID..."  /></label>
                 <label htmlFor="userId">User ID: <input type="text" name="userId" value={values.userId} onChange={handleChange} placeholder="User ID..." /></label>
                 <label htmlFor="reason">Reason: <input type="text" name="reason" value={values.reason} onChange={handleChange} placeholder="Reason.." /></label>
@@ -59,6 +76,15 @@ export default function Actions(){
                     <h3>Timeout</h3>
                     <label htmlFor="time">Time: <input type="text" name="time" value={values.time} onChange={handleChange} placeholder="Time.." /></label>
                     <button onClick={handleTimeoutClick}>Timeout</button>
+                </div>
+				
+				<div>
+                    <h3>Role Manager</h3>
+                    <label htmlFor="byRoles">Rol ID: <input type="text" name="byRoles" value={values.byRoles} onChange={handleChange} placeholder="Rol Id..." /></label>
+                    <button onClick={handleRolesChange}>Rol ID ekle</button>
+					<button onClick={handleRolesClear}>Temizle</button>
+					
+					<button onClick={handleRoleClick}>Rolleri Gönder</button>
                 </div>
             </div>
 
