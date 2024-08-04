@@ -90,9 +90,40 @@ const Unban = async (req,res)=> {
 }
 
 
+const Timeout = async (req,res)=> {
+    const { serverId, userId, time, reason } = req.body
+    const isServerId = serverId || process.env.SERVER_ID
+    try {
+        const server = await bot.client.guilds.fetch(isServerId)
+        const user = await server.members.cache.get(userId)
+        
+        if(!server) return res.json({
+                success: true,
+                message: 'Server ID yok.'
+            })
+        
+        if(!userId) return res.json({
+                success: true,
+                message: "Kullanıcı ID'si yok."
+            })
+        await user.timeout(Number(time), reason)
+    
+        return res.json({
+            message: 'Kullanıcıya zamanaşımı uygulandı',
+            success: true,
+    
+        })
+    } catch (err) {
+        console.log('error', err)
+    }
+
+}
+
 export {
     Ban,
     Kick,
-    Unban
+    Unban,
+
+    Timeout
 
 }

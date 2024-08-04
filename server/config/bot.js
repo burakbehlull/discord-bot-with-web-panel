@@ -6,7 +6,7 @@ import fs from 'fs'
 export default class Bot {
     constructor(){
         this.client = new Client({
-            intents: Object.keys(GatewayIntentBits).map((intent) => GatewayIntentBits[intent])
+            intents: Object.keys(GatewayIntentBits).map((intent) => GatewayIntentBits[intent]),
         })
     }
     connect() {
