@@ -36,6 +36,8 @@ VITE_API_URI = // YOUR SERVER URL
 | **/ban** | Bans the user | serverId, userId, reason |
 | **/kick** | Kicks the user | serverId, userId, reason |
 | **/unban** | Unbans the user | serverId, userId, reason |
+| **/timeout** | Timeout the user | serverId, userId, time, reason |
+
 
 ### **/bot**
 | Route | About | Values |

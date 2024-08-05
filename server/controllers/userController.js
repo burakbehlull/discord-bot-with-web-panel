@@ -120,8 +120,8 @@ const Timeout = async (req,res)=> {
 }
 
 
-const AddRoles = async (req,res)=> {
-    const { serverId, userId, roles } = req.body
+const UserRolesActions = async (req,res)=> {
+    const { serverId, userId, roles, isDelete } = req.body
     const isServerId = serverId || process.env.SERVER_ID
     try {
         const server = await bot.client.guilds.fetch(isServerId)
@@ -144,7 +144,13 @@ const AddRoles = async (req,res)=> {
 				success: true,
 				message: "Role yok."
 			})
-			await user.roles.add(target)
+			if(isDelete){
+				await user.roles.add(target)
+				return
+			} 
+			await user.roles.remove(target)
+			
+			
 		})
         
     
@@ -165,6 +171,6 @@ export {
     Unban,
 
     Timeout,
-	AddRoles
+	UserRolesActions
 
 }

@@ -8,6 +8,7 @@ export default function Actions(){
     const [data, setData] = useState({})
     const [error, setError] = useState({})
 	const [roles, setRoles] = useState([])
+	const [isDelete, setIsDelete] = useState(false)
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
@@ -18,6 +19,9 @@ export default function Actions(){
 	}
 	function handleRolesClear(e){
 		setRoles([])
+	}
+	function handleIsDeleteChange(e){
+		setIsDelete(!isDelete)
 	}
     async function handleBanClick(){
         await axios.post(api+"/ban", {
@@ -49,10 +53,11 @@ export default function Actions(){
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     async function handleRoleClick(){
-        await axios.post(api+"/addRoles", {
+        await axios.post(api+"/UserRoles", {
             serverId: values.serverId,
             userId: values.userId,
-            roles: roles
+            roles: roles,
+			isDelete: isDelete,
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     return (
@@ -81,8 +86,11 @@ export default function Actions(){
 				<div>
                     <h3>Role Manager</h3>
                     <label htmlFor="byRoles">Rol ID: <input type="text" name="byRoles" value={values.byRoles} onChange={handleChange} placeholder="Rol Id..." /></label>
-                    <button onClick={handleRolesChange}>Rol ID ekle</button>
+                    <label htmlFor="isDelete">Is Delete?: <input type="checkbox" value={isDelete} onChange={handleIsDeleteChange} /></label>
+
+					<button onClick={handleRolesChange}>Rol ID ekle</button>
 					<button onClick={handleRolesClear}>Temizle</button>
+					
 					
 					<button onClick={handleRoleClick}>Rolleri Gönder</button>
                 </div>
