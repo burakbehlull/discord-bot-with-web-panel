@@ -6,6 +6,6 @@ router.route('/ban').post(Ban)
 router.route('/kick').post(Kick)
 router.route('/unban').post(Unban)
 router.route('/timeout').post(Timeout)
-router.route('/UserRoles').post(UserRolesActions)
+router.route('/roles').post(UserRolesActions)
 
 export default router;

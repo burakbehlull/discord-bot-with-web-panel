@@ -28,7 +28,14 @@ VITE_API_URI = // YOUR SERVER URL
 | -------- | -------- |
 | **/bot** | Where to set bot settings |
 | **/user** | Where operations are performed on users on the server |
+| **/server** | Server operations link path |
 | **/auth** | Route that sets user login registration and admin privileges |
+
+### **/bot**
+| Route | About | Values |
+| -------- | -------- | -------- |
+| **/status** | Sets the bot's do not disturb or idle status | status |
+| **/presence** | Sets the description of the bot playing and playing part | name, type |
 
 ### **/user**
 | Route | About | Values |
@@ -37,11 +44,16 @@ VITE_API_URI = // YOUR SERVER URL
 | **/kick** | Kicks the user | serverId, userId, reason |
 | **/unban** | Unbans the user | serverId, userId, reason |
 | **/timeout** | Timeout the user | serverId, userId, time, reason |
+| **/roles** | user roles add and remove | serverId, userId, roles, isDelete (true=delete, false=add) |
 
-
-### **/bot**
+### **/server**
 | Route | About | Values |
 | -------- | -------- | -------- |
-| **/status** | Sets the bot's do not disturb or idle status | status |
-| **/presence** | Sets the description of the bot playing and playing part | name, type |
+| **/roles** | Returns all roles on the server | serverId |
+
+
+### **/auth**
+| Route | About | Values |
+| -------- | -------- | -------- |
+| **/create** | User creates | username, displayName, email, password |
 

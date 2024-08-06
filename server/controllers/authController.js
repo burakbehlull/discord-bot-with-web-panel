@@ -2,7 +2,7 @@
 import User from "../models/User.js"
 
 async function CreateUser(req,res){
-    const { username, displayName, email, password} = req.body
+    const { username, displayName, email, password } = req.body
     try {
         const user = User.findOne({$or: [{email: email}, {username: username}]})
         if(user){

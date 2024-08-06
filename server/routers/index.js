@@ -1,9 +1,11 @@
 import authRoute from './authRoute.js'
 import botRoute from './botRoute.js'
 import userRoute from './userRoute.js'
+import serverRoute from './serverRoute.js'
 
 export {
     authRoute,
     botRoute,
-    userRoute
+    userRoute,
+    serverRoute
 }

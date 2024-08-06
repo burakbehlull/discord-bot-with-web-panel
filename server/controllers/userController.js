@@ -89,7 +89,6 @@ const Unban = async (req,res)=> {
 
 }
 
-
 const Timeout = async (req,res)=> {
     const { serverId, userId, time, reason } = req.body
     const isServerId = serverId || process.env.SERVER_ID
@@ -118,7 +117,6 @@ const Timeout = async (req,res)=> {
     }
 
 }
-
 
 const UserRolesActions = async (req,res)=> {
     const { serverId, userId, roles, isDelete } = req.body
