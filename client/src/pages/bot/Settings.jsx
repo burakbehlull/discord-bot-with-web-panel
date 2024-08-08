@@ -11,11 +11,14 @@ export default function Settings(){
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
+
     async function handleStatusClick(){
         await axios.post(api+"/status", {
             status: values.status
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
+
+
     async function handlePresenceClick(){
         await axios.post(api+"/presence", {
             type: values.presence,

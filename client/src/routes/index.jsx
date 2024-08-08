@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero,Settings, Dashboard, Actions } from '../pages/index.js'
+import { Hero,Settings, Dashboard, Actions, Server } from '../pages/index.js'
 export default function Routes(){
     return useRoutes([
         {
@@ -13,12 +13,16 @@ export default function Routes(){
                 {
                     path: 'settings',
                     element: <Settings />
+                },
+                {
+                    path: 'actions',
+                    element: <Actions />
+                },
+                {
+                    path: 'server',
+                    element: <Server />
                 }
             ]
-        },
-        {
-            path: '/actions',
-            element: <Actions />
         }
     ])
 

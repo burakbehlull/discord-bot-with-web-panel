@@ -9,6 +9,7 @@ export default function Actions(){
     const [error, setError] = useState({})
 	const [roles, setRoles] = useState([])
 	const [isDelete, setIsDelete] = useState(false)
+
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
@@ -53,7 +54,7 @@ export default function Actions(){
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     async function handleRoleClick(){
-        await axios.post(api+"/UserRoles", {
+        await axios.post(api+"/roles", {
             serverId: values.serverId,
             userId: values.userId,
             roles: roles,

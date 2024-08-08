@@ -4,8 +4,7 @@ export default function Hero(){
     return (
         <>
             HERO
-            <Link to="/bot/settings">Bot Settings</Link>
-            <Link to="/actions">User Actions</Link>
+            <Link to="/bot">Bot Dashboard</Link>
         </>
     )
 }
