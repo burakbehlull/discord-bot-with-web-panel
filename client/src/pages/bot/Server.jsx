@@ -11,10 +11,10 @@ export default function Server(){
         setValues({...values, [e.target.name]: e.target.value})
     }
 
-    async function handleRolesClick(){
-        await axios.post(api+"/roles", {
+    async function handleSubmit(){
+        await axios.post(api+"/", {
             serverId: values.serverId
-        }).then(res=> setData(res.data['data'])).catch(err=> setError(err))
+        }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     return (
         <>
@@ -26,14 +26,21 @@ export default function Server(){
             SERVER
             <div className="container">
                 <label htmlFor="serverId">Server ID: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server ID..."  /></label>
-                <button onClick={handleRolesClick}>Get Roles</button>
+                <button onClick={handleSubmit}>Get Roles</button>
             </div>
 
             <ul>
                 <li>ROLLER</li>
-                {data?.filter((item)=>item.name !== "=================")
-                .map((item, key)=><li key={key}>
-                    {item.name} - {item.id}
+                {data['roles']?.filter((role)=>role.name !== "=================")
+                .map((role, key)=><li key={key}>
+                    {role.name} - {role.id}
+                </li>)}
+            </ul>
+            <br /><br />
+            <ul>
+                <li>KANALLAR</li>
+                {data['channels']?.map((channel, key)=><li key={key}>
+                    {channel.name} - {channel.id}
                 </li>)}
             </ul>
 
