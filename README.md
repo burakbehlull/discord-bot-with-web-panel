@@ -49,8 +49,9 @@ VITE_API_URI = // YOUR SERVER URL
 ### **/server**
 | Route | About | Values |
 | -------- | -------- | -------- |
+| **/** | Fetches all data on the server | serverId |
 | **/roles** | Returns all roles on the server | serverId |
-
+| **/channels** | Returns all channels on the server | serverId |
 
 ### **/auth**
 | Route | About | Values |
