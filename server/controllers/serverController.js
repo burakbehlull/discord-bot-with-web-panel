@@ -14,6 +14,7 @@ const Index = async (req,res)=> {
         
         const roles = await server.roles.fetch()
         const channels = await server.channels.fetch()
+        const members = await server.members.fetch()
 		
         if(!server) return res.json({
                 success: true,
@@ -27,7 +28,8 @@ const Index = async (req,res)=> {
             message: 'Veriler başarıyla getirildi',
             success: true,
 			channels: channels,
-            roles: roles
+            roles: roles,
+            members: members
         })
 
     } catch (err) {

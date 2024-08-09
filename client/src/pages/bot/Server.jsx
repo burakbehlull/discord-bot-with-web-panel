@@ -16,6 +16,7 @@ export default function Server(){
             serverId: values.serverId
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
+    console.log(data?.members)
     return (
         <>
 
@@ -41,6 +42,13 @@ export default function Server(){
                 <li>KANALLAR</li>
                 {data['channels']?.map((channel, key)=><li key={key}>
                     {channel.name} - {channel.id}
+                </li>)}
+            </ul>
+
+            <ul>
+                <li>KULLANICLAR</li>
+                {data['members']?.map((member, key)=><li key={key}>
+                    <img className="userImage" src={`${member.displayAvatarURL}`} alt="user image" />- {member.displayName} - {member.userId}
                 </li>)}
             </ul>
 
