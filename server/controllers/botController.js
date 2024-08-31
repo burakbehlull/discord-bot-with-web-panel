@@ -1,6 +1,21 @@
 // bot controller
 import { bot } from '../index.js'
 
+const Servers = async (req, res)=>{
+    try {
+		const servers = await bot.client.guilds.cache
+		
+        console.log('başarılı')
+        return res.json({
+			servers: servers,
+            success: true
+        })
+    } catch (err) {
+        console.log("Hata: ", err.message)
+        return
+    }
+}
+
 const BotStatus = async (req,res)=> {
     const { status } = req.body
 
@@ -41,6 +56,7 @@ const BotPresence = async (req,res)=> {
 }
 
 export {
+	Servers,
     BotStatus,
     BotPresence,
 }
