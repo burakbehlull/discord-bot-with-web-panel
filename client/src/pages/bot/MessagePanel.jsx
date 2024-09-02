@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 
 const api = import.meta.env.VITE_API_URI + "/messages"
 const serverApi = import.meta.env.VITE_API_URI + "/server"
+const botApi = import.meta.env.VITE_API_URI + "/bot"
 
 export default function MessagePanel(){
     const [values, setValues] = useState({
@@ -11,12 +12,24 @@ export default function MessagePanel(){
     const [data, setData] = useState([])
     const [userDms, setUserDms] = useState([])
     const [channels, setChannels] = useState([])
+    const [members, setMembers] = useState([])
+    const [servers, setServers] = useState([])
     const [channelMessages, setChannelMessages] = useState([])
     const [error, setError] = useState({})
     
 
     const [isUserDm, setIsUserDm] = useState(false)
     
+    async function handleServersClick(){
+        await axios.get(botApi+"/servers")
+        .then(res=> setServers(res.data['servers']))
+        .catch(err=> setError(err))
+    }    
+
+    useEffect(()=> {
+        handleServersClick()
+    }, [])
+
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
@@ -52,6 +65,13 @@ export default function MessagePanel(){
             serverId:values.serverId
         }).then(res=> setChannels(res.data['data'])).catch(err=> setError(err))
     }
+    
+    async function handleGetMembers(e){
+        await axios.post(serverApi+"/", {
+            serverId:values.serverId
+        }).then(res=> setMembers(res.data['members'])).catch(err=> setError(err))
+    }
+
 
     async function handleMessageReply(e){
         await axios.post(api+"/reply", {
@@ -68,13 +88,30 @@ export default function MessagePanel(){
         <section id="message-panel">
             <h1>MESSAGE PANEL</h1>
             <div>
+
+                
                 <br />
                 <label htmlFor="serverId">Server Id: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server Id.." /></label>
+                <select name="serverId" onChange={handleChange}>
+                    <p>Servers: </p>
+                    {servers?.map((server,i)=>
+                    <option key={i} value={server.id}>{server.name}</option>)}
+                </select>
                 <br />
                 <label htmlFor="userId">User Id: <input type="text" name="userId" value={values.userId} onChange={handleChange} placeholder="User Id.." /></label>
+                <select name="userId" onChange={handleChange}>
+                    {members?.map((member,i)=>
+                    <option key={i} value={member.userId}>{member.displayName}</option>)}
+                </select>
+
                 <br />
                 <label htmlFor="channelId">Channel Id: <input type="text" name="channelId" value={values.channelId} onChange={handleChange} placeholder="Channel Id.." /></label>
+                <select name="channelId" onChange={handleChange}>
+                    {channels?.map((channel,i)=>
+                    <option key={i} value={channel.id}>{channel.name}</option>)}
+                </select>
                 <br />
+
                 <label htmlFor="messageId">Message Id: <input type="text" name="messageId" value={values.messageId} onChange={handleChange} placeholder="Message Id.." /></label>
                 <select name="messageId" onChange={handleChange}>
                     {userDms?.map((message,i)=>
@@ -91,11 +128,7 @@ export default function MessagePanel(){
 
             <div>
                 <h3>Mesaj Gönderme</h3>
-                <label htmlFor="content">Mesaj: <input type="text" name="content" value={values.content} onChange={handleChange} placeholder="Content.." /></label>
-                <select name="channelId" onChange={handleChange}>
-                    {channels?.map((channel,i)=>
-                    <option key={i} value={channel.id}>{channel.name}</option>)}
-                </select>
+                <label htmlFor="content">Mesaj: <textarea type="texta" name="content" value={values.content} onChange={handleChange} placeholder="Content.." /></label>
                 <br />
                 <br />
                 <button onClick={handleServerSend}>Sunucuya Mesaj Gönder</button>
@@ -109,6 +142,7 @@ export default function MessagePanel(){
                 <button onClick={handleUserDmMessages}>DM mesajlarını getir</button>
                 <button onClick={handleServerChannelMessages}>Server mesajlarını Getir</button>
                 <button onClick={handleGetServerChannels}>Kanalları Getir</button>
+                <button onClick={handleGetMembers}>Kullancıları Getir</button>
 
             </div>
 
