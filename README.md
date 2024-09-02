@@ -32,10 +32,11 @@ VITE_API_URI = // YOUR SERVER URL
 | **/auth** | Route that sets user login registration and admin privileges |
 
 ### **/bot**
-| Route | About | Values |
-| -------- | -------- | -------- |
-| **/status** | Sets the bot's do not disturb or idle status | status |
-| **/presence** | Sets the description of the bot playing and playing part | name, type |
+| Route | About | Values | Request |
+| -------- | -------- | -------- | -------- |
+| **/status** | Sets the bot's do not disturb or idle status | status | POST |
+| **/presence** | Sets the description of the bot playing and playing part | name, type |  POST |
+| **/servers** | Bot servers | ... |  GET |
 
 ### **/user**
 | Route | About | Values |
