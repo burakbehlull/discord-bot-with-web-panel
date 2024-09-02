@@ -11,17 +11,18 @@ export default function MessagePanel(){
     })
     const [data, setData] = useState([])
     const [userDms, setUserDms] = useState([])
-    const [misc, setMisc] = useState(false)
+    
     const [channels, setChannels] = useState([])
     const [members, setMembers] = useState([])
     const [servers, setServers] = useState([])
     const [channelMessages, setChannelMessages] = useState([])
     const [error, setError] = useState({})
     
-
+    const [timer, setTimer] = useState(false)
     const [isUserDm, setIsUserDm] = useState(false)
+	const [misc, setMisc] = useState(false)
     
-    async function handleServersClick(){
+	async function handleServersClick(){
         await axios.get(botApi+"/servers")
         .then(res=> setServers(res.data['servers']))
         .catch(err=> setError(err))
@@ -29,23 +30,14 @@ export default function MessagePanel(){
 
     useEffect(()=> {
         handleServersClick()
+        
     }, [])
-    useEffect(()=>{
-        const Keypress = (event) => {
-            if (event.key === 'Enter') {
-                if(misc){
-                    handleUserSend()
-                } else {
-                    handleServerSend()
-                }
-            }
-        }
-        window.addEventListener('keydown', Keypress)
-
-        return () => {
-            window.removeEventListener('keydown', Keypress)
-        }
-    })
+    
+    useEffect(()=> {
+        if(timer){
+			handleUserDmMessages()
+		}
+    }, [data])
 
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
@@ -55,6 +47,9 @@ export default function MessagePanel(){
 	}
     function handleMisc(e){
 		setMisc(!misc)
+	}
+    function handleTimer(e){
+		setTimer(!timer)
 	}
     async function handleUserDmMessages(e){
         await axios.post(api+"/user/all", {
@@ -104,6 +99,24 @@ export default function MessagePanel(){
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
 
+    useEffect(()=>{
+        
+        const Keypress = (event) => {
+            if (event.key === 'Enter') {
+                document.querySelector("#content").value = ""
+                if(misc){
+                    handleUserSend()
+                }
+                handleServerSend()
+            }
+        }
+        window.addEventListener('keydown', Keypress)
+
+        return () => {
+            window.removeEventListener('keydown', Keypress)
+        }
+    })
+
     return (
         <section id="message-panel">
             <h1>MESSAGE PANEL</h1>
@@ -148,7 +161,9 @@ export default function MessagePanel(){
 
             <div>
                 <h3>Mesaj Gönderme</h3>
-                <label htmlFor="content">Mesaj: <textarea type="texta" name="content" value={values.content} onChange={handleChange} placeholder="Content.." /></label>
+                <label htmlFor="content">Mesaj: <textarea type="texta" name="content" value={values.content} onChange={handleChange} id="content" placeholder="Content.." /></label>
+                <label htmlFor="misc">Enter Event: <input type="checkbox" value={misc} onChange={handleMisc} /></label>
+                <label htmlFor="timer">Timer: <input type="checkbox" value={timer} onChange={handleTimer} /></label>
                 <br />
                 <br />
                 <button onClick={handleServerSend}>Sunucuya Mesaj Gönder</button>
@@ -156,7 +171,6 @@ export default function MessagePanel(){
                 <br />
                 <br />
                 <label htmlFor="isUserDm">Kullanıcı DM?: <input type="checkbox" value={isUserDm} onChange={handleIsUserDm} /></label>
-                <label htmlFor="misc">Enter Event (true=user, false=channel): <input type="checkbox" value={misc} onChange={handleMisc} /></label>
                 <button onClick={handleMessageReply}>Reply Mesaj Gönder</button>
                 <br />
                 <br />

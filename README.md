@@ -30,6 +30,7 @@ VITE_API_URI = // YOUR SERVER URL
 | **/user** | Where operations are performed on users on the server |
 | **/server** | Server operations link path |
 | **/auth** | Route that sets user login registration and admin privileges |
+| **/messages** | Send Server Channel or User Dm message and fetch |
 
 ### **/bot**
 | Route | About | Values | Request |
