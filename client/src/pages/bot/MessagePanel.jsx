@@ -11,6 +11,7 @@ export default function MessagePanel(){
     })
     const [data, setData] = useState([])
     const [userDms, setUserDms] = useState([])
+    const [misc, setMisc] = useState(false)
     const [channels, setChannels] = useState([])
     const [members, setMembers] = useState([])
     const [servers, setServers] = useState([])
@@ -29,12 +30,31 @@ export default function MessagePanel(){
     useEffect(()=> {
         handleServersClick()
     }, [])
+    useEffect(()=>{
+        const Keypress = (event) => {
+            if (event.key === 'Enter') {
+                if(misc){
+                    handleUserSend()
+                } else {
+                    handleServerSend()
+                }
+            }
+        }
+        window.addEventListener('keydown', Keypress)
+
+        return () => {
+            window.removeEventListener('keydown', Keypress)
+        }
+    })
 
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
     function handleIsUserDm(e){
 		setIsUserDm(!isUserDm)
+	}
+    function handleMisc(e){
+		setMisc(!misc)
 	}
     async function handleUserDmMessages(e){
         await axios.post(api+"/user/all", {
@@ -136,6 +156,7 @@ export default function MessagePanel(){
                 <br />
                 <br />
                 <label htmlFor="isUserDm">Kullanıcı DM?: <input type="checkbox" value={isUserDm} onChange={handleIsUserDm} /></label>
+                <label htmlFor="misc">Enter Event (true=user, false=channel): <input type="checkbox" value={misc} onChange={handleMisc} /></label>
                 <button onClick={handleMessageReply}>Reply Mesaj Gönder</button>
                 <br />
                 <br />
