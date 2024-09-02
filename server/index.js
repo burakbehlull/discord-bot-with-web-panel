@@ -3,7 +3,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import 'dotenv/config'
 import { DB, Bot } from './config/index.js'
-import { authRoute, botRoute, serverRoute, userRoute } from './routers/index.js'
+import { authRoute, botRoute, serverRoute, userRoute, messageRoute } from './routers/index.js'
 const app = express()
 
 app.use(express.static('public'))
@@ -30,6 +30,7 @@ app.use('/auth', authRoute)
 app.use('/bot', botRoute)
 app.use('/user', userRoute)
 app.use('/server', serverRoute)
+app.use('/messages', messageRoute)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is ${process.env.PORT} port started`)

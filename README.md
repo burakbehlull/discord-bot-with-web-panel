@@ -59,3 +59,10 @@ VITE_API_URI = // YOUR SERVER URL
 | -------- | -------- | -------- |
 | **/create** | User creates | username, displayName, email, password |
 
+### **/messages**
+| Route | About | Values | Request |
+| -------- | -------- | -------- | -------- |
+| **/server/send** | DM the channel | serverId, channelId, content |  POST |
+| **/user/send** | Sends a dm to the user | userId | POST |
+| **/server/all** | Pulls dm on server channel | serverId, channelId |  POST |
+| **/user/all** | Pulls dm on user channel | userId |  POST |
