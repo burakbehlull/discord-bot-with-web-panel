@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero,Settings, Dashboard, Actions, Server } from '../pages/index.js'
+import { Hero,Settings, Dashboard, Actions, Server, MessagePanel } from '../pages/index.js'
 export default function Routes(){
     return useRoutes([
         {
@@ -21,6 +21,10 @@ export default function Routes(){
                 {
                     path: 'server',
                     element: <Server />
+                },
+                {
+                    path: 'message-panel',
+                    element: <MessagePanel />
                 }
             ]
         }

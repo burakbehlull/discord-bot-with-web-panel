@@ -3,8 +3,10 @@ import { bot } from '../index.js'
 const GetServerMessages = async (req,res) => {
     const { serverId, channelId } = req.body
     try {
-        const guild = await bot.client.guilds.cache.get(serverId);
+        const guild = await bot.client.guilds.cache.get(serverId)
+        console.log(guild)
         const channel = await guild.channels.fetch(channelId)
+        console.log("CHANNEL XXX", channel)
         const messages = await channel.messages.fetch({ limit: 100 })
         return await res.json({
             success: true,

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react"
-
 const api = import.meta.env.VITE_API_URI + "/user"
 
 export default function Actions(){
