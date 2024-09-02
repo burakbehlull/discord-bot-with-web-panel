@@ -86,7 +86,45 @@ const GetUserMessages = async (req,res) => {
     }
 }
 
+const MessageReply = async (req,res) => {
+    const { messageId, content, userDm, userId, serverId, channelId } = req.body
+    try {
+        if(userDm){
+            const user = await bot.client.users.cache.get(userId)
+            const dm = await user.createDM()
+            const message = await dm.messages.fetch(messageId)
+            await message.reply(content)
+            return await res.json({
+                success: true,
+                message:'Başarılı',
+                content: content,
+                user: user
+            })
+        } else {
+            const guild = await bot.client.guilds.cache.get(serverId)
+            const channel = await guild.channels.fetch(channelId)
+            const message = await channel.messages.fetch(messageId)
+            await message.reply(content)
+            return await res.json({
+                success: true,
+                message:'Başarılı',
+                content: content,
+                channel: channel
+            })
+        }
+        
+    } catch (err) {
+        console.log('Hata: ', err.message)
+        return await res.json({
+            success: true,
+            message: 'Başarısız',
+            error: err.message
+        })
+    }
+}
+
 export {
+    MessageReply,
     GetUserMessages,
     GetServerMessages,
     SendUserDm,

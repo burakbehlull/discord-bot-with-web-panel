@@ -66,3 +66,5 @@ VITE_API_URI = // YOUR SERVER URL
 | **/user/send** | Sends a dm to the user | userId | POST |
 | **/server/all** | Pulls dm on server channel | serverId, channelId |  POST |
 | **/user/all** | Pulls dm on user channel | userId |  POST |
+| **/reply** | Reply to message in dm | userDm: true, userId, messageId |  POST |
+| **/reply** | Reply to channel message on server | userDm: false, messageId, serverId, channelId |  POST |
