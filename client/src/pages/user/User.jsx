@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useState } from "react"
+import { useSelector } from "react-redux";
 
 const api = import.meta.env.VITE_API_URI + "/user"
 
 export default function Actions(){
-    const [values, setValues] = useState({serverId: '', userId: '', reason: '', time: '',byRoles: ''})
+
+    const [values, setValues] = useState({ userId: '', reason: '', time: '',byRoles: ''})
     const [data, setData] = useState({})
     const [error, setError] = useState({})
 	const [roles, setRoles] = useState([])
 	const [isDelete, setIsDelete] = useState(false)
+
+    const { serverId } = useSelector(state=> state.keep)
 
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
@@ -26,28 +30,28 @@ export default function Actions(){
 	}
     async function handleBanClick(){
         await axios.post(api+"/ban", {
-            serverId: values.serverId,
+            serverId: serverId,
             userId: values.userId,
             reason: values.reason
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     async function handleKickClick(){
         await axios.post(api+"/kick", {
-            serverId: values.serverId,
+            serverId: serverId,
             userId: values.userId,
             reason: values.reason
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     async function handleUnbanClick(){
         await axios.post(api+"/unban", {
-            serverId: values.serverId,
+            serverId: serverId,
             userId: values.userId,
             reason: values.reason
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     async function handleTimeoutClick(){
         await axios.post(api+"/timeout", {
-            serverId: values.serverId,
+            serverId: serverId,
             userId: values.userId,
             reason: values.reason,
             time: values.time
@@ -55,7 +59,7 @@ export default function Actions(){
     }
     async function handleRoleClick(){
         await axios.post(api+"/roles", {
-            serverId: values.serverId,
+            serverId: serverId,
             userId: values.userId,
             roles: roles,
 			isDelete: isDelete,
@@ -68,7 +72,6 @@ export default function Actions(){
 
 
             <div className="container">
-                <label htmlFor="serverId">Server ID: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server ID..."  /></label>
                 <label htmlFor="userId">User ID: <input type="text" name="userId" value={values.userId} onChange={handleChange} placeholder="User ID..." /></label>
                 <label htmlFor="reason">Reason: <input type="text" name="reason" value={values.reason} onChange={handleChange} placeholder="Reason.." /></label>
                 

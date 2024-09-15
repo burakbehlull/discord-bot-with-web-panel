@@ -6,6 +6,7 @@ const serverApi = import.meta.env.VITE_API_URI + "/server"
 const botApi = import.meta.env.VITE_API_URI + "/bot"
 
 export default function MessagePanel(){
+
     const [values, setValues] = useState({
         serverId: '', userId: '', channelId:'', messageId: '', content: '',
     })

@@ -6,7 +6,8 @@ export default function Scope(){
             <nav>
                 <Link to="/">Anasayfa</Link>
                 <Link to="/guild">Guild</Link>
-                <Link to="/guild/server">Sunucular</Link>
+                <Link to="/guild/server">Sunucu İşlemleri</Link>
+                <Link to="/guild/user">Kullanıcı İşlemleri</Link>
             </nav>
 
             <main>

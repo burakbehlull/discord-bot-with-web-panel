@@ -12,6 +12,9 @@ import Servers from './bot/Servers'
 import Server from './server/Server'
 import User from './user/User'
 
+// partials
+import Nav from './partials/Nav'
+
 export {
     // pages
     Hero,
@@ -32,5 +35,8 @@ export {
     User,
 
     // other
-    MessagePanel
+    MessagePanel,
+
+    // partials
+    Nav
 }
