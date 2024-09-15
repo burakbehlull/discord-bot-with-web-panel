@@ -1,7 +1,11 @@
+@import 'sass/base/variables';
 @import 'sass/base/reset';
 @import 'sass/pages/server';
+@import 'sass/components/buttons';
 html {
     padding: 1.7rem;
+    font-family: "Nunito", sans-serif;
+    background-color: $discordBg;
 }
 
 @import 'sass/_partials/nav';

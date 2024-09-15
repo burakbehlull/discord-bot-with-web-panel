@@ -34,7 +34,7 @@ export default function Servers(){
 	
     return (
         <>
-			<h1>Bot Servers</h1>
+			<h1>BOT SERVERS</h1>
             
 			<div className="bot-servers">
                 <div>

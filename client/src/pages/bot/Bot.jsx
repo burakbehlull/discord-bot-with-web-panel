@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const api = import.meta.env.VITE_API_URI + "/bot"
-
 import {presenceFlags,statusFlags} from '../../helpers/data'
+
+import { Nav } from '../index'
+
 export default function Settings(){
     const [values, setValues] = useState({status: 'idle', presence: "0", presenceName: ''})
     const [data, setData] = useState({})
@@ -27,26 +29,34 @@ export default function Settings(){
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     return (
-        <>
-            {error && error?.message}
-            {data?.success && data?.success}
+        <section id="bot">
+            <Nav />
 
-            <div className="bot-status">
-                {JSON.stringify(values)}
-                <select name="status" onChange={handleChange}>
-                    {statusFlags?.map((flag,key)=><option key={key} value={flag}>{flag}</option>)}
-                </select>
-                <button onClick={handleStatusClick}>Ayarla</button>
-            </div>
+            <div className="container">
+                {error && error?.message}
+                {data?.success && data?.success}
 
-            <div className="bot-presence">
-                {JSON.stringify(data)}
-                <input type="text" name="presenceName" value={values.presenceName} onChange={handleChange} />
-                <select name="presence" onChange={handleChange}>
-                    {presenceFlags?.map((flag,key)=><option key={key} value={flag.value}>{flag.name}</option>)}
-                </select>
-                <button onClick={handlePresenceClick}>Ayarla</button>
+                <div className="bot-status">
+                    <h2>Bot Status: </h2>
+
+                    <p>Bot Durumu: </p>
+                    <select name="status" onChange={handleChange}>
+                        {statusFlags?.map((flag,key)=><option key={key} value={flag}>{flag}</option>)}
+                    </select>
+                    <button onClick={handleStatusClick}>Ayarla</button>
+                </div>
+
+                <div className="bot-presence">
+                    <h2>Bot Presence ve Presence Name: </h2>
+
+                    <p>Bot Durum Yazısı: </p>
+                    <input type="text" name="presenceName" value={values.presenceName} onChange={handleChange} />
+                    <select name="presence" onChange={handleChange}>
+                        {presenceFlags?.map((flag,key)=><option key={key} value={flag.value}>{flag.name}</option>)}
+                    </select>
+                    <button onClick={handlePresenceClick}>Ayarla</button>
+                </div>
             </div>
-        </>
+        </section>
     )
 }

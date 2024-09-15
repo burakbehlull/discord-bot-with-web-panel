@@ -8,17 +8,25 @@
     line-height: calc(1em + 0.725rem);
 }
 
-h1, h2, h3, h4,h5, h6, p {
+h1, h2, h3, h4,h5, h6 {
     font-size: 1.5em;
+    color: $discordText;
+    font-weight: normal;
+}
+p, label {
+    color: $discordText;
+    font-size: 1em;
     font-weight: normal;
 }
 
 ol, ul {
     list-style-type: none;
+    color: $discordText;
 }
 
 a {
     text-decoration: none;
+    color: $discordText;
 }
 
 button{

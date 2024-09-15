@@ -66,7 +66,8 @@ export default function Actions(){
         }).then(res=> setData(res.data)).catch(err=> setError(err))
     }
     return (
-        <>
+        <section id="user-area">
+            <h1>KULLANICI İŞLEMLERİ</h1>
             {error && error?.message}
             {data?.success && data?.message}
 
@@ -98,6 +99,6 @@ export default function Actions(){
                 </div>
             </div>
 
-        </>
+        </section>
     )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-
+import { Nav } from '../index'
 const api = import.meta.env.VITE_API_URI + "/messages"
 const serverApi = import.meta.env.VITE_API_URI + "/server"
 const botApi = import.meta.env.VITE_API_URI + "/bot"
@@ -120,10 +120,10 @@ export default function MessagePanel(){
 
     return (
         <section id="message-panel">
+            <Nav />
+
             <h1>MESSAGE PANEL</h1>
             <div>
-
-                
                 <br />
                 <label htmlFor="serverId">Server Id: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server Id.." /></label>
                 <select name="serverId" onChange={handleChange}>

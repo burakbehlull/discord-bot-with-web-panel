@@ -1,0 +1,12 @@
+button, select {
+    border: 1px solid black;
+    padding: 2px 15px;
+    border-radius: 15px 8px;
+    background-color: $discordBtn;
+    border-color: $discordBorder;
+    color: rgb(235, 241, 247);
+    cursor: pointer;
+    &:hover {
+        background-color: $discordBtnHover;
+    }
+}
