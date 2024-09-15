@@ -22,7 +22,7 @@ export default function Servers(){
     }
     function handleServerId(value){
         dispatch(ReduxServerId(value))
-        navigate('/dashboard')
+        navigate('/guild/server')
     }
     function handleChange(e){
         setServerId(e.target.value)

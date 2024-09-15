@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react"
+
 const api = import.meta.env.VITE_API_URI + "/user"
 
 export default function Actions(){
@@ -67,8 +68,6 @@ export default function Actions(){
 
 
             <div className="container">
-                {JSON.stringify(values)}
-				{JSON.stringify(roles)}
                 <label htmlFor="serverId">Server ID: <input type="text" name="serverId" value={values.serverId} onChange={handleChange} placeholder="Server ID..."  /></label>
                 <label htmlFor="userId">User ID: <input type="text" name="userId" value={values.userId} onChange={handleChange} placeholder="User ID..." /></label>
                 <label htmlFor="reason">Reason: <input type="text" name="reason" value={values.reason} onChange={handleChange} placeholder="Reason.." /></label>

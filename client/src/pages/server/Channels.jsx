@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const api = import.meta.env.VITE_API_URI + "/server"
 
 export default function Channels(){
-	const [channels, setChannels] = useState([])
+    const { serverId } = useSelector(state=> state.keep)
+
+    const [channels, setChannels] = useState([])
 	const [error, setError] = useState({})
 
 	
     async function handleSubmit(){
         await axios.post(api+"/", {
-            serverId: values.serverId
+            serverId: serverId
         }).then(res=> setChannels(res?.data['channels'])).catch(err=> setError(err))
     }
 

@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero, Login, Register } from '../pages/index.js'
+import { Hero, Login, Register, Scope, Server, Servers } from '../pages/index.js'
 
 export default function Routes(){
 
@@ -15,6 +15,20 @@ export default function Routes(){
         {
             path: '/register',
             element: <Register />
+        },
+        {
+            path: '/guild',
+            element: <Scope />,
+            children: [
+                {
+                    path: '',
+                    element: <Servers />
+                },
+                {
+                    path: 'server',
+                    element: <Server />
+                }
+            ]
         }
     ])
 
