@@ -1,5 +1,6 @@
 import { useRoutes } from 'react-router-dom'
-import { Hero, Login, Register, Scope, Server, Servers } from '../pages/index.js'
+import { Hero, Login, Register, Scope, 
+    Server, Servers, User, MessagePanel, Bot } from '../pages/index.js'
 
 export default function Routes(){
 
@@ -27,9 +28,22 @@ export default function Routes(){
                 {
                     path: 'server',
                     element: <Server />
+                },
+                {
+                    path: 'user',
+                    element: <User />
                 }
             ]
-        }
+        },
+        {
+            path: 'messagepanel',
+            element: <MessagePanel />
+        },
+        {
+            path: 'bot',
+            element: <Bot />
+        },
+
     ])
 
 }

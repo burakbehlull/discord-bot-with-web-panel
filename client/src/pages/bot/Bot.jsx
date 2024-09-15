@@ -5,23 +5,13 @@ const api = import.meta.env.VITE_API_URI + "/bot"
 
 import {presenceFlags,statusFlags} from '../../helpers/data'
 export default function Settings(){
-    const [values, setValues] = useState({status: '', presence: "0", presenceName: ''})
-    const [servers, setServers] = useState([])
+    const [values, setValues] = useState({status: 'idle', presence: "0", presenceName: ''})
     const [data, setData] = useState({})
     const [error, setError] = useState({})
+
     function handleChange(e){
         setValues({...values, [e.target.name]: e.target.value})
     }
-
-    async function handleServersClick(){
-        await axios.get(api+"/servers")
-        .then(res=> setServers(res.data['servers']))
-        .catch(err=> setError(err))
-    }    
-
-    useEffect(()=> {
-        handleServersClick()
-    }, [])
     
     async function handleStatusClick(){
         await axios.post(api+"/status", {
@@ -40,15 +30,6 @@ export default function Settings(){
         <>
             {error && error?.message}
             {data?.success && data?.success}
-
-            <div className="bot-servers">
-                <ul>
-                    <li><b>SERVERS</b></li>
-                    {servers.map((server, i)=> <li key={i}>
-                        {server?.name} - {server?.id}
-                    </li>)}
-                </ul>
-            </div>
 
             <div className="bot-status">
                 {JSON.stringify(values)}
