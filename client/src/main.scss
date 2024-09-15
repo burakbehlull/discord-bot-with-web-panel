@@ -1,4 +1,7 @@
+@import 'sass/base/reset';
 @import 'sass/pages/server';
 html {
-    // background: red;
+    padding: 1.7rem;
 }
+
+@import 'sass/_partials/nav';

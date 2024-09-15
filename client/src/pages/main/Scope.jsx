@@ -4,10 +4,12 @@ export default function Scope(){
     return (
         <>
             <nav>
-                <Link to="/">Anasayfa</Link>
-                <Link to="/guild">Guild</Link>
-                <Link to="/guild/server">Sunucu İşlemleri</Link>
-                <Link to="/guild/user">Kullanıcı İşlemleri</Link>
+                <ul>
+                    <li><Link to="/">Anasayfa</Link></li>
+                    <li><Link to="/guild">Guild</Link></li>
+                    <li><Link to="/guild/server">Sunucu İşlemleri</Link></li>
+                    <li><Link to="/guild/user">Kullanıcı İşlemleri</Link></li>
+                </ul>
             </nav>
 
             <main>
