@@ -32,11 +32,11 @@ export default function Settings(){
         <section id="bot">
             <Nav />
 
-            <div className="container" className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 {error && error?.message}
                 {data?.success && data?.success}
 
-                <div className="bot-status">
+                <div>
                     <h2>Bot Status: </h2>
 
                     <p>Bot Durumu: </p>
@@ -50,11 +50,17 @@ export default function Settings(){
                     <h2>Bot Presence ve Presence Name: </h2>
                     <div className="flex flex-row gap-4 items-center">
                         <span className="text-discordtext">Bot Durum Yazısı: </span>
-                        <input type="text" name="presenceName" value={values.presenceName} onChange={handleChange} />
+                        <input 
+                            type="text"
+                            name="presenceName"
+                            value={values.presenceName} onChange={handleChange}
+                            placeholder="Bot Presence Name" 
+                        
+                        />
                         <select name="presence" onChange={handleChange}>
                             {presenceFlags?.map((flag,key)=><option key={key} value={flag.value}>{flag.name}</option>)}
                         </select>
-                        <button className="btn-sm btn-neutral" onClick={handlePresenceClick}>Ayarla</button>
+                        <button onClick={handlePresenceClick}>Ayarla</button>
                     </div>
                     
                 </div>
