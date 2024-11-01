@@ -3,11 +3,10 @@ import { Nav } from '../index'
 export default function Hero(){
     return (
         <>
-            HERO
             <Nav />
 
             <main>
-                
+                HERO
             </main>
         </>
     )

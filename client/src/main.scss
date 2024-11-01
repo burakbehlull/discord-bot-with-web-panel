@@ -1,11 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import 'sass/base/variables';
 @import 'sass/base/reset';
 @import 'sass/pages/server';
 @import 'sass/components/buttons';
-html {
-    padding: 1.7rem;
-    font-family: "Nunito", sans-serif;
-    background-color: $discordBg;
+
+@layer base {
+    html, body {
+        @apply w-full h-full bg-discordbg p-[1.7rem] font-nunito;
+    }
 }
+
 
 @import 'sass/_partials/nav';
